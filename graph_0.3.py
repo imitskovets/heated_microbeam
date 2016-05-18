@@ -27,8 +27,6 @@ Termo = np.zeros(Y_full * X_full * N_visual).reshape(N_visual, Y_full, X_full)
 #print(VisualMap)
 
 pi = np.arccos(-1)
-print(pi)
-print(np.sin(2*3.14*3 / 5))
 
 for n in np.arange(N_visual):
     for x in np.arange(X_full):
@@ -44,12 +42,11 @@ for n in np.arange(N_visual):
             if (y <= rect_y_end) and (y >= rect_y_start) and (x >= rect_x_start) and (x <= rect_x_end):
                 Termo[n, y, x] = 1
     Termo[n, 0, 0] = 1
-print(Termo)
 #
 
 setka = np.arange(Y_full * X_full).reshape(Y_full, X_full)
 #WTF????????????????
-im = plt.imshow(np.sin(setka))
+im = plt.imshow(np.sin(setka), cmap=plt.get_cmap('viridis'), animated=True)
 
 plt.figure(1)
 kino = animation.FuncAnimation(fig1, updatefig, np.arange(int(N_visual / P)), interval = interval)
