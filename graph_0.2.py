@@ -25,9 +25,10 @@ for n in np.arange(N):
     if n in np.arange(0, N, P):
         pole = np.vstack((pole, Termo[now,::2,:].reshape(1, Y_full, X_full)))
 
-print(Termo[1,::2,:])
+#print(Termo[1,::2,:])
 #
 setka = np.arange(Y_full * X_full).reshape(Y_full, X_full)
+print(setka)
 im = plt.imshow(np.sin(setka))
 
 plt.figure(1)
