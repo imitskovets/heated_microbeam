@@ -51,7 +51,7 @@ def progon(U, N, bound_x_1, bound_x_2, bound_y_1, bound_y_2):
         for j in range(bound_y_2 - 1, bound_y_1, - y_step):
             U[N + 1][j][i] = alpha_y[j] * U[N + 1][j + 1][i] + beta_y[j][i]
 
-scale = 1
+scale = 10
 N_visual = 100  # kol shagov po dt Visual
 jump = 1
 N_time = N_visual * jump
@@ -87,10 +87,16 @@ print(T[0])
 
 for n in range(N_time - 2):
     progon(T, n, rect_x_end, X_full - 1, rect_y_start, rect_y_end)
-
+    progon(T, n, rect_x_start, 0, rect_y_start, rect_y_end)
+    progon(T, n, rect_x_start, rect_x_end, rect_y_start, 0)
+    progon(T, n, rect_x_start, rect_x_end, rect_y_end, Y_full - 1)
+    progon(T, n, rect_x_start, 0, rect_y_start, 0)
+    progon(T, n, rect_x_end, X_full - 1, rect_y_start, 0)
+    progon(T, n, rect_x_start, 0, rect_y_end, Y_full - 1)
+    progon(T, n, rect_x_end, X_full - 1, rect_y_end, Y_full - 1)
 # generate video array
 for n in range(N_visual-2):
-    Termo[n] = (T[n * jump] - Tmap) / T1
+    Termo[n] = (T[n * jump] - 0*Tmap) / T1
 # draw video
 interval = 100
 Writer = animation.writers['ffmpeg']
